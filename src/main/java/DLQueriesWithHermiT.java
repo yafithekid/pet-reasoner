@@ -20,6 +20,7 @@ import org.semanticweb.owlapi.util.BidirectionalShortFormProviderAdapter;
 import org.semanticweb.owlapi.util.ShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleShortFormProvider;
 import uk.ac.manchester.cs.owl.owlapi.OWLDataPropertyImpl;
+import uk.ac.manchester.cs.owl.owlapi.OWLNamedIndividualImpl;
 
 public class DLQueriesWithHermiT {
     static OWLOntology ONTOLOGY;
@@ -224,14 +225,26 @@ class DLQueryPrinter {
         sb.append("\n\n");
         if (!entities.isEmpty()) {
             for (OWLEntity entity : entities) {
-                sb.append("\t").append(shortFormProvider.getShortForm(entity))
-                        .append("\n");
+                sb.append("\t").append(shortFormProvider.getShortForm(entity));
+                if (entity instanceof OWLNamedIndividualImpl){
+                    OWLNamedIndividualImpl owlNamedIndividual = (OWLNamedIndividualImpl) entity;
+                    Map<OWLDataPropertyExpression, Set<OWLLiteral>> dataPropertyValues = owlNamedIndividual.getDataPropertyValues(DLQueriesWithHermiT.ONTOLOGY);
+                    for(OWLDataPropertyExpression exp : dataPropertyValues.keySet()){
+                        Set<OWLLiteral> literals = dataPropertyValues.get(exp);
+                        for(OWLLiteral literal: literals){
+                            sb.append("\t").append("Rp").append(literal.parseInteger());
+                        }
+                    }
+                }
+                sb.append("\n");
             }
         } else {
             sb.append("\t[NONE]\n");
         }
         sb.append("\n");
     }
+
+
 }
 
 /**
