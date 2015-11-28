@@ -1,0 +1,536 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY pet "http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/untitled-ontology-3#"
+     xml:base="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/untitled-ontology-3"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:pet="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#livesIn -->
+
+    <owl:ObjectProperty rdf:about="&pet;livesIn"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#harga -->
+
+    <owl:DatatypeProperty rdf:about="&pet;harga"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Akuarium -->
+
+    <owl:Class rdf:about="&pet;Akuarium">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Air"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Anjing -->
+
+    <owl:Class rdf:about="&pet;Anjing">
+        <rdfs:subClassOf rdf:resource="&pet;Rumah"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Kompetisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Ayam -->
+
+    <owl:Class rdf:about="&pet;Ayam">
+        <rdfs:subClassOf rdf:resource="&pet;H100M"/>
+        <rdfs:subClassOf rdf:resource="&pet;Pekarangan"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ternak"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Bebek -->
+
+    <owl:Class rdf:about="&pet;Bebek">
+        <rdfs:subClassOf rdf:resource="&pet;Pekarangan"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Cupang -->
+
+    <owl:Class rdf:about="&pet;Cupang">
+        <rdfs:subClassOf rdf:resource="&pet;Akuarium"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Kompetisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#H0-100K -->
+
+    <owl:Class rdf:about="&pet;H0-100K">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Harga"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#H100K-1M -->
+
+    <owl:Class rdf:about="&pet;H100K-1M">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Harga"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#H100M -->
+
+    <owl:Class rdf:about="&pet;H100M">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Harga"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#H10M-100M -->
+
+    <owl:Class rdf:about="&pet;H10M-100M">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Harga"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#H1M-10M -->
+
+    <owl:Class rdf:about="&pet;H1M-10M">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Harga"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#K1-2jam -->
+
+    <owl:Class rdf:about="&pet;K1-2jam">
+        <rdfs:subClassOf rdf:resource="&pet;Komitmen"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#K1jam -->
+
+    <owl:Class rdf:about="&pet;K1jam">
+        <rdfs:subClassOf rdf:resource="&pet;Komitmen"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#K2-3jam -->
+
+    <owl:Class rdf:about="&pet;K2-3jam">
+        <rdfs:subClassOf rdf:resource="&pet;Komitmen"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#K3-4jam -->
+
+    <owl:Class rdf:about="&pet;K3-4jam">
+        <rdfs:subClassOf rdf:resource="&pet;Komitmen"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#K4jam -->
+
+    <owl:Class rdf:about="&pet;K4jam">
+        <rdfs:subClassOf rdf:resource="&pet;Komitmen"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Kambing -->
+
+    <owl:Class rdf:about="&pet;Kambing">
+        <rdfs:subClassOf rdf:resource="&pet;Lapangan"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ternak"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Kelinci -->
+
+    <owl:Class rdf:about="&pet;Kelinci">
+        <rdfs:subClassOf rdf:resource="&pet;Pekarangan"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Kerbau -->
+
+    <owl:Class rdf:about="&pet;Kerbau">
+        <rdfs:subClassOf rdf:resource="&pet;Lapangan"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Pekerja"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Koi -->
+
+    <owl:Class rdf:about="&pet;Koi">
+        <rdfs:subClassOf rdf:resource="&pet;Kolam"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Kolam -->
+
+    <owl:Class rdf:about="&pet;Kolam">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Air"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Komitmen -->
+
+    <owl:Class rdf:about="&pet;Komitmen">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Hewan"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Kucing -->
+
+    <owl:Class rdf:about="&pet;Kucing">
+        <rdfs:subClassOf rdf:resource="&pet;Rumah"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#NonFungsional"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Kuda -->
+
+    <owl:Class rdf:about="&pet;Kuda">
+        <rdfs:subClassOf rdf:resource="&pet;Lapangan"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Kompetisi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Lapangan -->
+
+    <owl:Class rdf:about="&pet;Lapangan">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Darat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#MasKoki -->
+
+    <owl:Class rdf:about="&pet;MasKoki">
+        <rdfs:subClassOf rdf:resource="&pet;Akuarium"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Pekarangan -->
+
+    <owl:Class rdf:about="&pet;Pekarangan">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Darat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Rumah -->
+
+    <owl:Class rdf:about="&pet;Rumah">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Darat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Sapi -->
+
+    <owl:Class rdf:about="&pet;Sapi">
+        <rdfs:subClassOf rdf:resource="&pet;H10M-100M"/>
+        <rdfs:subClassOf rdf:resource="&pet;Lapangan"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ternak"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Air -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Air">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ruang"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Darat -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Darat">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ruang"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Fungsional -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Fungsional">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Hewan"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Harga -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Harga">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Hewan"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Hewan -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Hewan"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Kompetisi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Kompetisi">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Fungsional"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#NonFungsional -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#NonFungsional">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Hewan"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Pekerja -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Pekerja">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Fungsional"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Penjaga -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Penjaga">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Fungsional"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ruang -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ruang">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Hewan"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ternak -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ternak">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Fungsional"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Transportasi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Transportasi">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Fungsional"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#angora -->
+
+    <owl:NamedIndividual rdf:about="&pet;angora">
+        <rdf:type rdf:resource="&pet;Kucing"/>
+        <pet:harga rdf:datatype="&xsd;integer">1000000</pet:harga>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#ayamJago -->
+
+    <owl:NamedIndividual rdf:about="&pet;ayamJago">
+        <rdf:type rdf:resource="&pet;Ayam"/>
+        <pet:harga rdf:datatype="&xsd;integer">1000000</pet:harga>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#bebek -->
+
+    <owl:NamedIndividual rdf:about="&pet;bebek">
+        <rdf:type rdf:resource="&pet;Bebek"/>
+        <pet:harga rdf:datatype="&xsd;integer">1000000</pet:harga>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#cupang -->
+
+    <owl:NamedIndividual rdf:about="&pet;cupang">
+        <rdf:type rdf:resource="&pet;Cupang"/>
+        <pet:harga rdf:datatype="&xsd;integer">1000000</pet:harga>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#kambing -->
+
+    <owl:NamedIndividual rdf:about="&pet;kambing">
+        <rdf:type rdf:resource="&pet;Kambing"/>
+        <pet:harga rdf:datatype="&xsd;integer">1000000</pet:harga>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#kelinci -->
+
+    <owl:NamedIndividual rdf:about="&pet;kelinci">
+        <rdf:type rdf:resource="&pet;Kelinci"/>
+        <pet:harga rdf:datatype="&xsd;integer">1000000</pet:harga>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#kerbau -->
+
+    <owl:NamedIndividual rdf:about="&pet;kerbau">
+        <rdf:type rdf:resource="&pet;Kerbau"/>
+        <pet:harga rdf:datatype="&xsd;integer">1000000</pet:harga>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#koi -->
+
+    <owl:NamedIndividual rdf:about="&pet;koi">
+        <rdf:type rdf:resource="&pet;Koi"/>
+        <pet:harga rdf:datatype="&xsd;integer">1000000</pet:harga>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#kucingLiar -->
+
+    <owl:NamedIndividual rdf:about="&pet;kucingLiar">
+        <rdf:type rdf:resource="&pet;Kucing"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#kuda -->
+
+    <owl:NamedIndividual rdf:about="&pet;kuda">
+        <rdf:type rdf:resource="&pet;Kuda"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Transportasi"/>
+        <pet:harga rdf:datatype="&xsd;integer">1000000</pet:harga>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#labrador -->
+
+    <owl:NamedIndividual rdf:about="&pet;labrador">
+        <rdf:type rdf:resource="&pet;Anjing"/>
+        <pet:harga rdf:datatype="&xsd;int">3000000</pet:harga>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#masKoki -->
+
+    <owl:NamedIndividual rdf:about="&pet;masKoki">
+        <rdf:type rdf:resource="&pet;MasKoki"/>
+        <pet:harga rdf:datatype="&xsd;integer">1000000</pet:harga>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#sapi -->
+
+    <owl:NamedIndividual rdf:about="&pet;sapi">
+        <rdf:type rdf:resource="&pet;Sapi"/>
+        <pet:harga rdf:datatype="&xsd;integer">1000000</pet:harga>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#siberianHusky -->
+
+    <owl:NamedIndividual rdf:about="&pet;siberianHusky">
+        <rdf:type rdf:resource="&pet;Anjing"/>
+        <pet:harga rdf:datatype="&xsd;int">4000000</pet:harga>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
