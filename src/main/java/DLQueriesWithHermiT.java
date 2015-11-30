@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.Map;
@@ -24,6 +25,7 @@ import uk.ac.manchester.cs.owl.owlapi.OWLNamedIndividualImpl;
 
 public class DLQueriesWithHermiT {
     static OWLOntology ONTOLOGY;
+
     public static void main(String[] args) throws Exception {
         // Load an example ontology.
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
@@ -50,6 +52,26 @@ public class DLQueriesWithHermiT {
         // expression on the command line.
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
 
+
+        System.out.println("Sistem Pakar Hewan Peliharaan");
+        System.out.println("-----------------------------");
+
+        do {
+            QueryBuilder qb = new QueryBuilder();
+
+            if (askQuestion("Apakah hewan yang anda cari untuk kompetisi?", br)) qb.kompetisi();
+            if (askQuestion("Apakah hewan yang anda cari sebagai hewan pekerja?", br)) qb.pekerja();
+            if (askQuestion("Apakah hewan yang anda cari sebagai hewan transportasi?", br)) qb.transportasi();
+
+            if (askQuestion("Apakah hewan yang anda cari akan menempati rumah?", br)) qb.rumah();
+            else if (askQuestion("Apakah hewan yang anda cari akan menempati lapangan?", br)) qb.lapangan();
+
+            dlQueryPrinter.askQuery(qb.build());
+
+            System.out.println("Ingin ulang dari awal?");
+        }while (br.readLine().equals("Y"));
+
+        /*
         //contoh
         //hewan yang kompetisi dan lapangan
         QueryBuilder qb = new QueryBuilder();
@@ -62,6 +84,7 @@ public class DLQueriesWithHermiT {
         qb.rumah();
         dlQueryPrinter.askQuery(qb.build());
 
+
         while (true) {
             System.out
                     .println("Type a class expression in Manchester Syntax and press Enter (or press x to exit):");
@@ -72,6 +95,18 @@ public class DLQueriesWithHermiT {
             }
             dlQueryPrinter.askQuery(classExpression.trim());
             System.out.println();
+        }*/
+    }
+
+    private static boolean askQuestion(String question, BufferedReader reader){
+        System.out.println(question);
+        try {
+            if (reader.readLine().equals("Y")){
+                return true;
+            }
+            return  false;
+        } catch (IOException e) {
+            return  false;
         }
     }
 
