@@ -23,8 +23,25 @@ import org.semanticweb.owlapi.util.SimpleShortFormProvider;
 import uk.ac.manchester.cs.owl.owlapi.OWLDataPropertyImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLNamedIndividualImpl;
 
+@SuppressWarnings({"Duplicates"})
 public class DLQueriesWithHermiT {
     static OWLOntology ONTOLOGY;
+    static int AIR = 1;
+    static int DARAT = 2;
+
+    static int AKUARIUM = 1;
+    static int KOLAM = 2;
+
+    static int LAPANGAN = 1;
+    static int PEKARANGAN = 2;
+    static int RUMAH = 3;
+
+    static int KOMPETISI = 1;
+    static int PEKERJA_PENJAGA = 2;
+    static int TERNAK = 3;
+    static int TRANSPORTASI = 4;
+
+    static int BEBAS = 0;
 
     public static void main(String[] args) throws Exception {
         // Load an example ontology.
@@ -59,12 +76,42 @@ public class DLQueriesWithHermiT {
         do {
             QueryBuilder qb = new QueryBuilder();
 
-            if (askQuestion("Apakah hewan yang anda cari untuk kompetisi?", br)) qb.kompetisi();
-            if (askQuestion("Apakah hewan yang anda cari sebagai hewan pekerja?", br)) qb.pekerja();
-            if (askQuestion("Apakah hewan yang anda cari sebagai hewan transportasi?", br)) qb.transportasi();
+            int ruang = askRuang(br);
+            if (ruang == DARAT){
+                qb.darat();
+                int darat = askDarat(br);
+                if (darat == LAPANGAN){
+                    qb.lapangan();
+                } else if (darat == PEKARANGAN){
+                    qb.pekarangan();
+                } else if (darat == RUMAH){
+                    qb.rumah();
+                }
+            } else if (ruang == AIR){
+                int air = askAir(br);
+                if (air == AKUARIUM){
+                    qb.akuarium();
+                } else if (air == KOLAM){
+                    qb.kolam();
+                }
+            }
+            int fungsi = askTujuan(br);
+            if (fungsi == TERNAK){
+                qb.ternak();
+            } else if (fungsi == TRANSPORTASI){
+                qb.transportasi();
+            } else if (fungsi == KOMPETISI){
+                qb.kompetisi();
+            } else if (fungsi == PEKERJA_PENJAGA){
+                qb.pekerjaPenjaga();
+            }
 
-            if (askQuestion("Apakah hewan yang anda cari akan menempati rumah?", br)) qb.rumah();
-            else if (askQuestion("Apakah hewan yang anda cari akan menempati lapangan?", br)) qb.lapangan();
+//            if (askQuestion("Apakah hewan yang anda cari untuk kompetisi?", br)) qb.kompetisi();
+//            if (askQuestion("Apakah hewan yang anda cari sebagai hewan pekerja?", br)) qb.pekerja();
+//            if (askQuestion("Apakah hewan yang anda cari sebagai hewan transportasi?", br)) qb.transportasi();
+//
+//            if (askQuestion("Apakah hewan yang anda cari akan menempati rumah?", br)) qb.rumah();
+//            else if (askQuestion("Apakah hewan yang anda cari akan menempati lapangan?", br)) qb.lapangan();
 
             dlQueryPrinter.askQuery(qb.build());
 
@@ -110,6 +157,80 @@ public class DLQueriesWithHermiT {
         }
     }
 
+    private static int askRuang(BufferedReader br){
+        System.out.println("Hewan yang tinggal di mana?");
+        System.out.println(AIR+". Air");
+        System.out.println(DARAT+". Darat");
+        System.out.println(BEBAS+". Bebas");
+        System.out.print("Pilihan: ");
+        try {
+            String s = br.readLine();
+            int result = Integer.parseInt(s);
+            if (result < 1 || result > 2){
+                result = 0;
+            }
+            return result;
+        } catch (IOException e) {
+            return 0;
+        }
+    }
+
+    private static int askAir(BufferedReader br){
+        System.out.println("Pilihan air:");
+        System.out.println(AKUARIUM+". Akuarium");
+        System.out.println(KOLAM+". Kolam");
+        System.out.println(BEBAS+". Bebas");
+        System.out.print("Pilihan: ");
+        try {
+            String s = br.readLine();
+            int result = Integer.parseInt(s);
+            if (result < 1 || result > 2){
+                result = 0;
+            }
+            return result;
+        } catch (IOException e) {
+            return 0;
+        }
+    }
+
+    private static int askDarat(BufferedReader br){
+        System.out.println("Pilihan darat:");
+        System.out.println(LAPANGAN+". Lapangan");
+        System.out.println(PEKARANGAN+". Pekarangan");
+        System.out.println(RUMAH+". Rumah");
+        System.out.println(BEBAS+". Bebas");
+        System.out.print("Pilihan: ");
+        try {
+            String s = br.readLine();
+            int result = Integer.parseInt(s);
+            if (result < 1 || result > 3){
+                result = 0;
+            }
+            return result;
+        } catch (IOException e) {
+            return 0;
+        }
+    }
+
+    private static int askTujuan(BufferedReader br){
+        System.out.println("Peliharaan untuk apa?");
+        System.out.println(KOMPETISI+". Kompetisi");
+        System.out.println(PEKERJA_PENJAGA+". Pekerja/Penjaga");
+        System.out.println(TERNAK+". Ternak");
+        System.out.println(TRANSPORTASI+". Transportasi");
+        System.out.println(BEBAS+". Bebas");
+        System.out.print("Pilihan: ");
+        try {
+            String s = br.readLine();
+            int result = Integer.parseInt(s);
+            if (result < 1 || result > 4){
+                result = 0;
+            }
+            return result;
+        } catch (IOException e) {
+            return 0;
+        }
+    }
 
 }
 
@@ -324,5 +445,40 @@ class QueryBuilder{
 
     public String build(){
         return sb.toString();
+    }
+
+    public QueryBuilder kolam() {
+        sb.append(" and Kolam");
+        return this;
+    }
+
+    public QueryBuilder pekerjaPenjaga() {
+        sb.append(" and (Pekerja or Penjaga)");
+        return this;
+    }
+
+    public QueryBuilder ternak() {
+        sb.append(" and Ternak");
+        return this;
+    }
+
+    public QueryBuilder pekarangan() {
+        sb.append(" and Pekarangan");
+        return this;
+    }
+
+    public QueryBuilder darat() {
+        sb.append(" and Darat");
+        return this;
+    }
+
+    public QueryBuilder akuarium() {
+        sb.append(" and Akuarium");
+        return this;
+    }
+
+    public QueryBuilder air() {
+        sb.append(" and Air");
+        return this;
     }
 }
