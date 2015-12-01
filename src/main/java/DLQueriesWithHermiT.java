@@ -115,8 +115,8 @@ public class DLQueriesWithHermiT {
 
             dlQueryPrinter.askQuery(qb.build());
 
-            System.out.println("Ingin ulang dari awal?");
-        }while (br.readLine().equals("Y"));
+            System.out.println("Ingin ulang dari awal? (Y/N)");
+        }while (br.readLine().equalsIgnoreCase("Y"));
 
         /*
         //contoh
@@ -348,13 +348,13 @@ class DLQueryPrinter {
                 sb.append("\nQUERY:   ").append(classExpression).append("\n\n");
                 Set<OWLClass> superClasses = dlQueryEngine.getSuperClasses(
                         classExpression, false);
-                printEntities("SuperClasses", superClasses, sb);
+//                printEntities("SuperClasses", superClasses, sb);
                 Set<OWLClass> equivalentClasses = dlQueryEngine
                         .getEquivalentClasses(classExpression);
-                printEntities("EquivalentClasses", equivalentClasses, sb);
+//                printEntities("EquivalentClasses", equivalentClasses, sb);
                 Set<OWLClass> subClasses = dlQueryEngine.getSubClasses(classExpression,
                         true);
-                printEntities("SubClasses", subClasses, sb);
+//                printEntities("SubClasses", subClasses, sb);
                 Set<OWLNamedIndividual> individuals = dlQueryEngine.getInstances(
                         classExpression, false);
                 printEntities("Individuals", individuals, sb);
@@ -388,6 +388,10 @@ class DLQueryPrinter {
                     for(OWLDataPropertyExpression exp : dataPropertyValues.keySet()){
                         Set<OWLLiteral> literals = dataPropertyValues.get(exp);
                         for(OWLLiteral literal: literals){
+                            length = 50 - shortFormProvider.getShortForm(entity).length();
+                            for (int i = 0; i < length; i++) {
+                                sb.append(".");
+                            }
                             sb.append("\t").append("Rp").append(literal.parseInteger());
                         }
                     }
