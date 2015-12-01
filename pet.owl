@@ -119,6 +119,7 @@
 
     <owl:Class rdf:about="&pet;Arwana">
         <rdfs:subClassOf rdf:resource="&pet;Akuarium"/>
+        <rdfs:subClassOf rdf:resource="&pet;Sedang"/>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#NonFungsional"/>
     </owl:Class>
     
@@ -130,6 +131,22 @@
         <rdfs:subClassOf rdf:resource="&pet;Pekarangan"/>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#NonFungsional"/>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ternak"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Bandung -->
+
+    <owl:Class rdf:about="&pet;Bandung">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&pet;Dingin"/>
+                    <rdf:Description rdf:about="&pet;Iklim"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&pet;Dingin"/>
     </owl:Class>
     
 
@@ -164,6 +181,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Dingin -->
+
+    <owl:Class rdf:about="&pet;Dingin">
+        <rdfs:subClassOf rdf:resource="&pet;Iklim"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Gurami -->
 
     <owl:Class rdf:about="&pet;Gurami">
@@ -180,6 +205,28 @@
         <rdfs:subClassOf rdf:resource="&pet;Rumah"/>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#NonFungsional"/>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ternak"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Iklim -->
+
+    <owl:Class rdf:about="&pet;Iklim"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Jakarta -->
+
+    <owl:Class rdf:about="&pet;Jakarta">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&pet;Iklim"/>
+                    <rdf:Description rdf:about="&pet;Panas"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&pet;Panas"/>
     </owl:Class>
     
 
@@ -274,6 +321,22 @@
     
 
 
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Malang -->
+
+    <owl:Class rdf:about="&pet;Malang">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&pet;Dingin"/>
+                    <rdf:Description rdf:about="&pet;Iklim"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&pet;Dingin"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#MasKoki -->
 
     <owl:Class rdf:about="&pet;MasKoki">
@@ -281,6 +344,30 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Kompetisi"/>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#NonFungsional"/>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ternak"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Medan -->
+
+    <owl:Class rdf:about="&pet;Medan">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&pet;Iklim"/>
+                    <rdf:Description rdf:about="&pet;Sedang"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&pet;Sedang"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Panas -->
+
+    <owl:Class rdf:about="&pet;Panas">
+        <rdfs:subClassOf rdf:resource="&pet;Iklim"/>
     </owl:Class>
     
 
@@ -307,6 +394,62 @@
         <rdfs:subClassOf rdf:resource="&pet;Lapangan"/>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#NonFungsional"/>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/petuntitled-ontology-3#Ternak"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Sedang -->
+
+    <owl:Class rdf:about="&pet;Sedang">
+        <rdfs:subClassOf rdf:resource="&pet;Iklim"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Semarang -->
+
+    <owl:Class rdf:about="&pet;Semarang">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&pet;Iklim"/>
+                    <rdf:Description rdf:about="&pet;Panas"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&pet;Panas"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Surabaya -->
+
+    <owl:Class rdf:about="&pet;Surabaya">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&pet;Iklim"/>
+                    <rdf:Description rdf:about="&pet;Panas"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&pet;Panas"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ivanaclairine/ontologies/2015/10/pet#Yogyakarta -->
+
+    <owl:Class rdf:about="&pet;Yogyakarta">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&pet;Iklim"/>
+                    <rdf:Description rdf:about="&pet;Sedang"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&pet;Sedang"/>
     </owl:Class>
     
 
@@ -723,29 +866,6 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&pet;AnjingHias"/>
-            <rdf:Description rdf:about="&pet;Arwana"/>
-            <rdf:Description rdf:about="&pet;Ayam"/>
-            <rdf:Description rdf:about="&pet;Bebek"/>
-            <rdf:Description rdf:about="&pet;Burung"/>
-            <rdf:Description rdf:about="&pet;Cupang"/>
-            <rdf:Description rdf:about="&pet;Gurami"/>
-            <rdf:Description rdf:about="&pet;Hamster"/>
-            <rdf:Description rdf:about="&pet;Kambing"/>
-            <rdf:Description rdf:about="&pet;Keledai"/>
-            <rdf:Description rdf:about="&pet;Kelinci"/>
-            <rdf:Description rdf:about="&pet;Kerbau"/>
-            <rdf:Description rdf:about="&pet;Koi"/>
-            <rdf:Description rdf:about="&pet;Kucing"/>
-            <rdf:Description rdf:about="&pet;Kuda"/>
-            <rdf:Description rdf:about="&pet;KuraKura"/>
-            <rdf:Description rdf:about="&pet;MasKoki"/>
-            <rdf:Description rdf:about="&pet;Sapi"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="&pet;Anjing"/>
             <rdf:Description rdf:about="&pet;Ayam"/>
             <rdf:Description rdf:about="&pet;Bebek"/>
@@ -769,6 +889,29 @@
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="&pet;AnjingPenjaga"/>
+            <rdf:Description rdf:about="&pet;Arwana"/>
+            <rdf:Description rdf:about="&pet;Ayam"/>
+            <rdf:Description rdf:about="&pet;Bebek"/>
+            <rdf:Description rdf:about="&pet;Burung"/>
+            <rdf:Description rdf:about="&pet;Cupang"/>
+            <rdf:Description rdf:about="&pet;Gurami"/>
+            <rdf:Description rdf:about="&pet;Hamster"/>
+            <rdf:Description rdf:about="&pet;Kambing"/>
+            <rdf:Description rdf:about="&pet;Keledai"/>
+            <rdf:Description rdf:about="&pet;Kelinci"/>
+            <rdf:Description rdf:about="&pet;Kerbau"/>
+            <rdf:Description rdf:about="&pet;Koi"/>
+            <rdf:Description rdf:about="&pet;Kucing"/>
+            <rdf:Description rdf:about="&pet;Kuda"/>
+            <rdf:Description rdf:about="&pet;KuraKura"/>
+            <rdf:Description rdf:about="&pet;MasKoki"/>
+            <rdf:Description rdf:about="&pet;Sapi"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&pet;AnjingHias"/>
             <rdf:Description rdf:about="&pet;Arwana"/>
             <rdf:Description rdf:about="&pet;Ayam"/>
             <rdf:Description rdf:about="&pet;Bebek"/>

@@ -20,7 +20,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -44,6 +43,9 @@ public class DLQueriesWithHermiT {
     static int TRANSPORTASI = 4;
 
     static int BEBAS = 0;
+
+    public static final String[] daftarKota = new String[]{
+            "Bandung", "Jakarta", "Malang", "Medan", "Semarang", "Surabaya", "Yogyakarta"};
 
     public static void main(String[] args) throws Exception {
         // Load an example ontology.
@@ -71,11 +73,15 @@ public class DLQueriesWithHermiT {
 
         System.out.println("Sistem Pakar Hewan Peliharaan");
         System.out.println("-----------------------------");
-
+        // TODO FIRST_POINT
         do {
             QueryBuilder qb = new QueryBuilder();
 
             askHewanKebencian(br, qb);
+
+            askHarga(br, qb);
+
+            askKota(br, qb);
 
             int ruang = askRuang(br);
             if (ruang == DARAT) {
@@ -223,7 +229,7 @@ public class DLQueriesWithHermiT {
     }
 
     private static void askHewanKebencian(BufferedReader br, QueryBuilder qb) {
-        System.out.println("Hewan apakah yang tidak ingin anda pelihara? (Diawali huruf besaar)");
+        System.out.println("Hewan apakah yang tidak ingin anda pelihara? (Diawali huruf besar)");
         try {
             String s = br.readLine();
 
@@ -252,6 +258,46 @@ public class DLQueriesWithHermiT {
             return -1;
         } catch (NumberFormatException e) {
             return -1;
+        }
+    }
+
+    private static void askHarga(BufferedReader br, QueryBuilder qb) {
+        try {
+            System.out.println("Berapa harga maksimal hewan yang ingin anda beli?");
+            System.out.print("Harga: Rp ");
+            int hargaMaksimal = Integer.parseInt(br.readLine());
+
+            System.out.println("Berapa harga minimal hewan yang ingin anda beli?");
+            System.out.println("Harga: Rp ");
+            int hargaMinimal = Integer.parseInt(br.readLine());
+
+            qb.harga(hargaMinimal, hargaMaksimal);
+
+        } catch (IOException e) {
+            // do nothing
+        }
+    }
+
+    private static void askKota(BufferedReader br, QueryBuilder qb) {
+        System.out.println("Anda tinggal di kota apa?");
+        for (int i = 0; i < daftarKota.length; i++) {
+            System.out.println("" + (i + 1) + ". " + daftarKota[i]);
+        }
+        System.out.println("0. Tidak terdapat di daftar");
+        System.out.print("Pilihan: ");
+
+        try {
+            String s = br.readLine();
+            int result = Integer.parseInt(s);
+            if (result < 1 || result > daftarKota.length) {
+                result = 0;
+            }
+
+            if (result > 0) {
+                qb.kota(daftarKota[result-1]);
+            }
+
+        } catch (IOException e) {
         }
     }
 }
@@ -417,7 +463,7 @@ class DLQueryPrinter {
                         // ASSUME only one literal per expression
                         for (OWLLiteral literal : literals) {
 
-                            try{
+                            try {
                                 int harga = literal.parseInteger();
 
                                 length = COLUMN_WIDTH - shortFormProvider.getShortForm(entity).length();
@@ -425,11 +471,9 @@ class DLQueryPrinter {
                                     sb.append(".");
                                 }
                                 sb.append("\t").append("Rp").append(harga);
-                            }catch(Exception x){
+                            } catch (Exception x) {
 
                             }
-
-
                         }
                     }
                 }
@@ -529,10 +573,27 @@ class QueryBuilder {
         return this;
     }
 
-    public QueryBuilder jamkerja(int alokasi){
+    public QueryBuilder jamkerja(int alokasi) {
         if (alokasi > 10) sb.append(" and waktu value \"banyak\"");
         else if (alokasi > 5) sb.append(" and waktu value \"sedang\"");
-        else  sb.append(" and waktu value \"sedikit\"");
+        else sb.append(" and waktu value \"sedikit\"");
+        return this;
+    }
+
+    public QueryBuilder harga(int minimal, int maksimal) {
+        sb.append(" and (harga some integer [>= ");
+        sb.append(minimal );
+        sb.append(", <= ");
+        sb.append(maksimal);
+        sb.append("])");
+
+        return this;
+    }
+
+    public QueryBuilder kota(String kota) {
+        sb.append(" and ");
+        sb.append(kota);
+
         return this;
     }
 }
