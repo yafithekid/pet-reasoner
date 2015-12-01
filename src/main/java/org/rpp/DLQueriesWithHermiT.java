@@ -1,13 +1,5 @@
 package org.rpp;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
-
 import org.coode.owlapi.manchesterowlsyntax.ManchesterOWLSyntaxEditorParser;
 import org.semanticweb.HermiT.Reasoner;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -22,8 +14,16 @@ import org.semanticweb.owlapi.util.BidirectionalShortFormProvider;
 import org.semanticweb.owlapi.util.BidirectionalShortFormProviderAdapter;
 import org.semanticweb.owlapi.util.ShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleShortFormProvider;
-import uk.ac.manchester.cs.owl.owlapi.OWLDataPropertyImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLNamedIndividualImpl;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.NumberFormat;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
 
 @SuppressWarnings({"Duplicates"})
 public class DLQueriesWithHermiT {
@@ -48,19 +48,16 @@ public class DLQueriesWithHermiT {
     public static void main(String[] args) throws Exception {
         // Load an example ontology.
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-        OWLOntology ontology = manager
-                .loadOntologyFromOntologyDocument(new File(System.getProperty("user.dir").concat(File.separator).concat("pet.owl")));
-        if (ONTOLOGY == null){
+        OWLOntology ontology = manager.loadOntologyFromOntologyDocument(
+                new File(System.getProperty("user.dir").concat(File.separator).concat("pet.owl")));
+        if (ONTOLOGY == null) {
             ONTOLOGY = ontology;
         }
         // We need a reasoner to do our query answering
 
-
         // These two lines are the only relevant difference between this code and the original example
         // This example uses HermiT: http://hermit-reasoner.com/
         OWLReasoner reasoner = new Reasoner.ReasonerFactory().createReasoner(ontology);
-
-
 
         ShortFormProvider shortFormProvider = new SimpleShortFormProvider();
         // Create the DLQueryPrinter helper class. This will manage the
@@ -78,162 +75,185 @@ public class DLQueriesWithHermiT {
         do {
             QueryBuilder qb = new QueryBuilder();
 
+            askHewanKebencian(br, qb);
+
             int ruang = askRuang(br);
-            if (ruang == DARAT){
+            if (ruang == DARAT) {
                 qb.darat();
+
                 int darat = askDarat(br);
-                if (darat == LAPANGAN){
+                if (darat == LAPANGAN) {
                     qb.lapangan();
-                } else if (darat == PEKARANGAN){
+                } else if (darat == PEKARANGAN) {
                     qb.pekarangan();
-                } else if (darat == RUMAH){
+                } else if (darat == RUMAH) {
                     qb.rumah();
                 }
-            } else if (ruang == AIR){
+
+            } else if (ruang == AIR) {
+                qb.air();
+
                 int air = askAir(br);
-                if (air == AKUARIUM){
+                if (air == AKUARIUM) {
                     qb.akuarium();
-                } else if (air == KOLAM){
+                } else if (air == KOLAM) {
                     qb.kolam();
                 }
             }
+
             int fungsi = askTujuan(br);
-            if (fungsi == TERNAK){
+            if (fungsi == TERNAK) {
                 qb.ternak();
-            } else if (fungsi == TRANSPORTASI){
+            } else if (fungsi == TRANSPORTASI) {
                 qb.transportasi();
-            } else if (fungsi == KOMPETISI){
+            } else if (fungsi == KOMPETISI) {
                 qb.kompetisi();
-            } else if (fungsi == PEKERJA_PENJAGA){
+            } else if (fungsi == PEKERJA_PENJAGA) {
                 qb.pekerjaPenjaga();
             }
 
-//            if (askQuestion("Apakah hewan yang anda cari untuk kompetisi?", br)) qb.kompetisi();
-//            if (askQuestion("Apakah hewan yang anda cari sebagai hewan pekerja?", br)) qb.pekerja();
-//            if (askQuestion("Apakah hewan yang anda cari sebagai hewan transportasi?", br)) qb.transportasi();
-//
-//            if (askQuestion("Apakah hewan yang anda cari akan menempati rumah?", br)) qb.rumah();
-//            else if (askQuestion("Apakah hewan yang anda cari akan menempati lapangan?", br)) qb.lapangan();
+            int jamKerja = askJamKerja(br);
+            if (jamKerja > -1) {
+                qb.jamkerja(jamKerja);
+            }
 
             dlQueryPrinter.askQuery(qb.build());
 
             System.out.println("Ingin ulang dari awal? (Y/N)");
-        }while (br.readLine().equalsIgnoreCase("Y"));
 
-        /*
-        //contoh
-        //hewan yang kompetisi dan lapangan
-        QueryBuilder qb = new QueryBuilder();
-        qb.kompetisi();
-        qb.lapangan();
-        dlQueryPrinter.askQuery(qb.build());
-        //hewan yang rumah dan kompetisi
-        qb = new QueryBuilder();
-        qb.kompetisi();
-        qb.rumah();
-        dlQueryPrinter.askQuery(qb.build());
+        } while (br.readLine().equalsIgnoreCase("Y"));
 
-
-        while (true) {
-            System.out
-                    .println("Type a class expression in Manchester Syntax and press Enter (or press x to exit):");
-            String classExpression = br.readLine();
-            // Check for exit condition
-            if (classExpression == null || classExpression.equalsIgnoreCase("x")) {
-                break;
-            }
-            dlQueryPrinter.askQuery(classExpression.trim());
-            System.out.println();
-        }*/
     }
 
-    private static boolean askQuestion(String question, BufferedReader reader){
-        System.out.println(question);
-        try {
-            if (reader.readLine().equals("Y")){
-                return true;
-            }
-            return  false;
-        } catch (IOException e) {
-            return  false;
-        }
-    }
+//    private static boolean askQuestion(String question, BufferedReader reader) {
+//        System.out.println(question);
+//        try {
+//            if (reader.readLine().equals("Y")) {
+//                return true;
+//            }
+//            return false;
+//        } catch (IOException e) {
+//            return false;
+//        }
+//    }
 
-    private static int askRuang(BufferedReader br){
+    private static int askRuang(BufferedReader br) {
         System.out.println("Hewan yang tinggal di mana?");
-        System.out.println(AIR+". Air");
-        System.out.println(DARAT+". Darat");
-        System.out.println(BEBAS+". Bebas");
+        System.out.println(AIR + ". Air");
+        System.out.println(DARAT + ". Darat");
+        System.out.println(BEBAS + ". Bebas");
         System.out.print("Pilihan: ");
+
         try {
             String s = br.readLine();
             int result = Integer.parseInt(s);
-            if (result < 1 || result > 2){
+            if (result < 1 || result > 2) {
                 result = 0;
             }
+
             return result;
+
         } catch (IOException e) {
             return 0;
         }
     }
 
-    private static int askAir(BufferedReader br){
+    private static int askAir(BufferedReader br) {
         System.out.println("Pilihan air:");
-        System.out.println(AKUARIUM+". Akuarium");
-        System.out.println(KOLAM+". Kolam");
-        System.out.println(BEBAS+". Bebas");
+        System.out.println(AKUARIUM + ". Akuarium");
+        System.out.println(KOLAM + ". Kolam");
+        System.out.println(BEBAS + ". Bebas");
         System.out.print("Pilihan: ");
         try {
             String s = br.readLine();
             int result = Integer.parseInt(s);
-            if (result < 1 || result > 2){
+            if (result < 1 || result > 2) {
                 result = 0;
             }
+
             return result;
+
         } catch (IOException e) {
             return 0;
         }
     }
 
-    private static int askDarat(BufferedReader br){
+    private static int askDarat(BufferedReader br) {
         System.out.println("Pilihan darat:");
-        System.out.println(LAPANGAN+". Lapangan");
-        System.out.println(PEKARANGAN+". Pekarangan");
-        System.out.println(RUMAH+". Rumah");
-        System.out.println(BEBAS+". Bebas");
+        System.out.println(LAPANGAN + ". Lapangan");
+        System.out.println(PEKARANGAN + ". Pekarangan");
+        System.out.println(RUMAH + ". Rumah");
+        System.out.println(BEBAS + ". Bebas");
         System.out.print("Pilihan: ");
+
         try {
             String s = br.readLine();
             int result = Integer.parseInt(s);
-            if (result < 1 || result > 3){
+            if (result < 1 || result > 3) {
                 result = 0;
             }
+
             return result;
+
         } catch (IOException e) {
             return 0;
         }
     }
 
-    private static int askTujuan(BufferedReader br){
+    private static int askTujuan(BufferedReader br) {
         System.out.println("Peliharaan untuk apa?");
-        System.out.println(KOMPETISI+". Kompetisi");
-        System.out.println(PEKERJA_PENJAGA+". Pekerja/Penjaga");
-        System.out.println(TERNAK+". Ternak");
-        System.out.println(TRANSPORTASI+". Transportasi");
-        System.out.println(BEBAS+". Bebas");
+        System.out.println(KOMPETISI + ". Kompetisi");
+        System.out.println(PEKERJA_PENJAGA + ". Pekerja/Penjaga");
+        System.out.println(TERNAK + ". Ternak");
+        System.out.println(TRANSPORTASI + ". Transportasi");
+        System.out.println(BEBAS + ". Bebas");
         System.out.print("Pilihan: ");
         try {
             String s = br.readLine();
             int result = Integer.parseInt(s);
-            if (result < 1 || result > 4){
+            if (result < 1 || result > 4) {
                 result = 0;
             }
+
             return result;
+
         } catch (IOException e) {
             return 0;
         }
     }
 
+    private static void askHewanKebencian(BufferedReader br, QueryBuilder qb) {
+        System.out.println("Hewan apakah yang tidak ingin anda pelihara? (Diawali huruf besaar)");
+        try {
+            String s = br.readLine();
+
+            if (!s.equals("")) {
+                String[] hewanKebencian = s.split(" +");
+                for (String hewan : hewanKebencian) {
+                    qb.tidakSuka(hewan);
+                }
+            }
+
+        } catch (IOException e) {
+            // TODO handle exception
+        }
+    }
+
+    private static int askJamKerja(BufferedReader br) {
+        System.out.print("Berapa waktu yang akan anda dedikasikan untuk hewan anda? ");
+
+        try {
+            String s = br.readLine();
+            double temp = Double.parseDouble(s);
+            int result = (int) temp;
+            return result;
+
+        } catch (IOException e) {
+            return -1;
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
 }
 
 /**
@@ -305,6 +325,7 @@ class DLQueryParser {
     private final OWLOntology rootOntology;
     private final BidirectionalShortFormProvider bidiShortFormProvider;
 
+
     public DLQueryParser(OWLOntology rootOntology, ShortFormProvider shortFormProvider) {
         this.rootOntology = rootOntology;
         OWLOntologyManager manager = rootOntology.getOWLOntologyManager();
@@ -339,28 +360,25 @@ class DLQueryPrinter {
 
     /**
      * Buat query
+     *
      * @param classExpression input query. contoh "Hewan and Lapangan"
      */
     public void askQuery(String classExpression) {
         if (classExpression.length() == 0) {
             System.out.println("No class expression specified");
+
         } else {
             try {
+//                Set<OWLClass> superClasses = dlQueryEngine.getSuperClasses(classExpression, false);
+//                Set<OWLClass> equivalentClasses = dlQueryEngine.getEquivalentClasses(classExpression);
+//                Set<OWLClass> subClasses = dlQueryEngine.getSubClasses(classExpression, true);
+                Set<OWLNamedIndividual> individuals = dlQueryEngine.getInstances(classExpression, false);
+
                 StringBuilder sb = new StringBuilder();
                 sb.append("\nQUERY:   ").append(classExpression).append("\n\n");
-                Set<OWLClass> superClasses = dlQueryEngine.getSuperClasses(
-                        classExpression, false);
-//                printEntities("SuperClasses", superClasses, sb);
-                Set<OWLClass> equivalentClasses = dlQueryEngine
-                        .getEquivalentClasses(classExpression);
-//                printEntities("EquivalentClasses", equivalentClasses, sb);
-                Set<OWLClass> subClasses = dlQueryEngine.getSubClasses(classExpression,
-                        true);
-//                printEntities("SubClasses", subClasses, sb);
-                Set<OWLNamedIndividual> individuals = dlQueryEngine.getInstances(
-                        classExpression, false);
                 printEntities("Individuals", individuals, sb);
                 System.out.println(sb.toString());
+
             } catch (ParserException e) {
                 System.out.println(e.getMessage());
             }
@@ -369,87 +387,105 @@ class DLQueryPrinter {
 
     /**
      * Buat ngeprint hasilnya
-     * @param name name
+     *
+     * @param name     name
      * @param entities yang mau diprint
-     * @param sb hasil printnya
+     * @param sb       hasil printnya
      */
-    private void printEntities(String name, Set<? extends OWLEntity> entities,
-                               StringBuilder sb) {
+    private void printEntities(String name, Set<? extends OWLEntity> entities, StringBuilder sb) {
         sb.append(name);
-        int length = 50 - name.length();
+        // tambahkan ... supaya 50 karakter
+        int length = COLUMN_WIDTH - name.length();
         for (int i = 0; i < length; i++) {
             sb.append(".");
         }
         sb.append("\n\n");
+
         if (!entities.isEmpty()) {
             for (OWLEntity entity : entities) {
                 sb.append("\t").append(shortFormProvider.getShortForm(entity));
-                if (entity instanceof OWLNamedIndividualImpl){
+
+                if (entity instanceof OWLNamedIndividualImpl) {
                     OWLNamedIndividualImpl owlNamedIndividual = (OWLNamedIndividualImpl) entity;
-                    Map<OWLDataPropertyExpression, Set<OWLLiteral>> dataPropertyValues = owlNamedIndividual.getDataPropertyValues(DLQueriesWithHermiT.ONTOLOGY);
-                    for(OWLDataPropertyExpression exp : dataPropertyValues.keySet()){
+
+                    // ASSUME map only contains one DataPropertyExpression per OWLNamedIndividualImpl
+                    Map<OWLDataPropertyExpression, Set<OWLLiteral>> dataPropertyValues =
+                            owlNamedIndividual.getDataPropertyValues(DLQueriesWithHermiT.ONTOLOGY);
+
+                    for (OWLDataPropertyExpression exp : dataPropertyValues.keySet()) {
                         Set<OWLLiteral> literals = dataPropertyValues.get(exp);
-                        for(OWLLiteral literal: literals){
-                            length = 50 - shortFormProvider.getShortForm(entity).length();
-                            for (int i = 0; i < length; i++) {
-                                sb.append(".");
+                        // ASSUME only one literal per expression
+                        for (OWLLiteral literal : literals) {
+
+                            try{
+                                int harga = literal.parseInteger();
+
+                                length = COLUMN_WIDTH - shortFormProvider.getShortForm(entity).length();
+                                for (int i = 0; i < length; i++) {
+                                    sb.append(".");
+                                }
+                                sb.append("\t").append("Rp").append(harga);
+                            }catch(Exception x){
+
                             }
-                            sb.append("\t").append("Rp").append(literal.parseInteger());
+
+
                         }
                     }
                 }
                 sb.append("\n");
             }
+
         } else {
             sb.append("\t[NONE]\n");
         }
         sb.append("\n");
     }
 
-
+    private static final int COLUMN_WIDTH = 50;
 }
 
 /**
  * Kelas untuk construct OWL query
  */
-class QueryBuilder{
+class QueryBuilder {
     StringBuilder sb;
 
-    public QueryBuilder(){
+    public QueryBuilder() {
         sb = new StringBuilder().append("Hewan");
     }
 
-    public QueryBuilder fungsional(){
+    public QueryBuilder fungsional() {
         sb.append(" and Fungsional");
         return this;
     }
 
-    public QueryBuilder pekerja(){
+    public QueryBuilder pekerja() {
         sb.append(" and Pekerja");
         return this;
     }
 
-    public QueryBuilder transportasi(){
+    public QueryBuilder transportasi() {
         sb.append(" and Transportasi");
         return this;
     }
 
-    public QueryBuilder lapangan(){
+    public QueryBuilder lapangan() {
         sb.append(" and Lapangan");
         return this;
     }
 
-    public QueryBuilder kompetisi(){
+    public QueryBuilder kompetisi() {
         sb.append(" and Kompetisi");
         return this;
     }
 
-    public QueryBuilder rumah(){
+    public QueryBuilder rumah() {
         sb.append(" and Rumah");
         return this;
     }
 
-    public String build(){
+    public String build() {
         return sb.toString();
     }
 
@@ -485,6 +521,18 @@ class QueryBuilder{
 
     public QueryBuilder air() {
         sb.append(" and Air");
+        return this;
+    }
+
+    public QueryBuilder tidakSuka(String s) {
+        sb.append(" and not " + s);
+        return this;
+    }
+
+    public QueryBuilder jamkerja(int alokasi){
+        if (alokasi > 10) sb.append(" and waktu value \"banyak\"");
+        else if (alokasi > 5) sb.append(" and waktu value \"sedang\"");
+        else  sb.append(" and waktu value \"sedikit\"");
         return this;
     }
 }
