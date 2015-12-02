@@ -251,8 +251,7 @@ public class DLQueriesWithHermiT {
         try {
             String s = br.readLine();
             double temp = Double.parseDouble(s);
-            int result = (int) temp;
-            return result;
+            return (int) temp;
 
         } catch (IOException e) {
             return -1;
@@ -262,16 +261,29 @@ public class DLQueriesWithHermiT {
     }
 
     private static void askHarga(BufferedReader br, QueryBuilder qb) {
+        String input;
         try {
             System.out.println("Berapa harga maksimal hewan yang ingin anda beli?");
             System.out.print("Harga: Rp ");
-            int hargaMaksimal = Integer.parseInt(br.readLine());
+            input = br.readLine();
+
+            int hargaMaksimal = -1;
+            if (!input.equals("")) {
+                hargaMaksimal = Integer.parseInt(input);
+            }
 
             System.out.println("Berapa harga minimal hewan yang ingin anda beli?");
             System.out.println("Harga: Rp ");
-            int hargaMinimal = Integer.parseInt(br.readLine());
+            input = br.readLine();
 
-            qb.harga(hargaMinimal, hargaMaksimal);
+            int hargaMinimal = -1;
+            if (!input.equals("")) {
+                hargaMinimal = Integer.parseInt(input);
+            }
+
+            if (hargaMinimal <= hargaMaksimal && hargaMinimal != -1) {
+                qb.harga(hargaMinimal, hargaMaksimal);
+            }
 
         } catch (IOException e) {
             // do nothing
@@ -294,10 +306,11 @@ public class DLQueriesWithHermiT {
             }
 
             if (result > 0) {
-                qb.kota(daftarKota[result-1]);
+                qb.kota(daftarKota[result - 1]);
             }
 
         } catch (IOException e) {
+            // do nothing
         }
     }
 }
@@ -332,7 +345,7 @@ class DLQueryEngine {
         OWLClassExpression classExpression = parser
                 .parseClassExpression(classExpressionString);
         Node<OWLClass> equivalentClasses = reasoner.getEquivalentClasses(classExpression);
-        Set<OWLClass> result = null;
+        Set<OWLClass> result;
         if (classExpression.isAnonymous()) {
             result = equivalentClasses.getEntities();
         } else {
@@ -454,7 +467,6 @@ class DLQueryPrinter {
                 if (entity instanceof OWLNamedIndividualImpl) {
                     OWLNamedIndividualImpl owlNamedIndividual = (OWLNamedIndividualImpl) entity;
 
-                    // ASSUME map only contains one DataPropertyExpression per OWLNamedIndividualImpl
                     Map<OWLDataPropertyExpression, Set<OWLLiteral>> dataPropertyValues =
                             owlNamedIndividual.getDataPropertyValues(DLQueriesWithHermiT.ONTOLOGY);
 
@@ -569,7 +581,8 @@ class QueryBuilder {
     }
 
     public QueryBuilder tidakSuka(String s) {
-        sb.append(" and not " + s);
+        sb.append(" and not ");
+        sb.append(s);
         return this;
     }
 
@@ -582,7 +595,7 @@ class QueryBuilder {
 
     public QueryBuilder harga(int minimal, int maksimal) {
         sb.append(" and (harga some integer [>= ");
-        sb.append(minimal );
+        sb.append(minimal);
         sb.append(", <= ");
         sb.append(maksimal);
         sb.append("])");
